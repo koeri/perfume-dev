@@ -17,19 +17,19 @@ public class PBvh
   
   public void draw()
   {
-    fill(color(255));
+    fill(color(random(100,255),random(100,255),random(100,255)));
     
     for( BvhBone b : parser.getBones())
     {
       pushMatrix();
       translate(b.absPos.x, b.absPos.y, b.absPos.z);
-      ellipse(0, 0, 2, 2);
+      rect(0, 0, 2, 2);
       popMatrix();
       if (!b.hasChildren())
       {
         pushMatrix();
         translate( b.absEndPos.x, b.absEndPos.y, b.absEndPos.z);
-        ellipse(0, 0, 10, 10);
+        rect(0, 0, 10, 10);
         popMatrix();
       }
         
