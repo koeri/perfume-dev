@@ -1,6 +1,10 @@
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer player;
+
 BvhParser parserA = new BvhParser();
 PBvh bvh1, bvh2, bvh3;
-	
 	
 public void setup()
 {
@@ -9,9 +13,13 @@ public void setup()
   noStroke();
   frameRate( 30 );
   
-  bvh1 = new PBvh( loadStrings( "A_test.bvh" ) );
-  bvh2 = new PBvh( loadStrings( "B_test.bvh" ) );
-  bvh3 = new PBvh( loadStrings( "C_test.bvh" ) );
+  bvh1 = new PBvh( loadStrings( "aachan.bvh" ) );
+  bvh2 = new PBvh( loadStrings( "kashiyuka.bvh" ) );
+  bvh3 = new PBvh( loadStrings( "nocchi.bvh" ) );
+
+  minim = new Minim(this);
+  player = minim.loadFile("Perfume_globalsite_sound.wav");
+  player.play();
 
   loop();
 }
@@ -21,9 +29,10 @@ public void draw()
   background( 0 );
   
   //camera
-  float _cos = cos(millis() / 5000.f);
-  float _sin = sin(millis() / 5000.f);
-  camera(width/4.f + width/4.f * _cos +200, height/2.0f-100, 550 + 150 * _sin,width/2.0f, height/2.0f, -400, 0, 1, 0);
+  //float _cos = cos(millis() / 5000.f);
+  //float _sin = sin(millis() / 5000.f);
+  //camera(width/4.f + width/4.f * _cos +200, height/2.0f-100, 550 + 150 * _sin,width/2.0f, height/2.0f, -400, 0, 1, 0);
+  camera((float) mouseX, (float) mouseY, 100.f, (float) (width/2.f), (float) (height/2.f), 0.f, 0.f, 1.f, 0.f);
   
   //ground 
   fill( color( 255 ));
@@ -45,4 +54,3 @@ public void draw()
   bvh3.draw();
   popMatrix();
 }
-
